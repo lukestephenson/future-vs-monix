@@ -12,19 +12,22 @@ object MonixParallelApplicative {
 
     def makeATask(i: Int) = {
       Task {
-        println(s"${Thread.currentThread().getName} is running job $i and will sleep for 5 seconds")
-        Thread.sleep(5000)
+        println(s"${Thread.currentThread().getName} is running job $i and will sleep for 10 seconds")
+        Thread.sleep(10000)
         i * 10
       }
     }
 
     val allTasks: List[Task[Int]] = (1 to 10).map(makeATask).toList
 
+    // Using the Task API
+    // Task.gather(allTasks)
+
+    // Using the cats `sequence` method
     import monix.eval.Task.nondeterminism
     import monix.cats._
     implicitly[Applicative[Task]]
 
-    // Using the cats `sequence` method
     val singleTask: Task[List[Int]] = allTasks.sequence
 
     singleTask.runAsync.onComplete { result =>
