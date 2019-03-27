@@ -2,11 +2,8 @@ name := "monix-examples"
 
 version := "1.0"
 
-scalaVersion := "2.12.1"
-
-val monixVersion = "2.2.1"
+scalaVersion := "2.12.8"
 
 libraryDependencies ++= Seq(
-  "io.monix"                        %% "monix"                       % monixVersion,
-  "io.monix"                        %% "monix-cats"                  % monixVersion
+  "io.monix"                        %% "monix"                       % "3.0.0-RC2"
 )

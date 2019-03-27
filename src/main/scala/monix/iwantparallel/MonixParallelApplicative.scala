@@ -1,6 +1,5 @@
 package monix.iwantparallel
 
-import cats.Applicative
 import cats.implicits._
 import monix.eval.Task
 import monix.execution.Scheduler
@@ -24,13 +23,9 @@ object MonixParallelApplicative {
     // Task.gather(allTasks)
 
     // Using the cats `sequence` method
-    import monix.eval.Task.nondeterminism
-    import monix.cats._
-    implicitly[Applicative[Task]]
+    val singleTask: Task[List[Int]] = allTasks.parSequence
 
-    val singleTask: Task[List[Int]] = allTasks.sequence
-
-    singleTask.runAsync.onComplete { result =>
+    singleTask.runToFuture.onComplete { result =>
       println(s"All tasks completed with result $result")
     }
 

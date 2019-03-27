@@ -7,10 +7,10 @@ import monix.execution.Scheduler.Implicits.global
 object TaskLaws {
   def main(args: Array[String]): Unit = {
     println("Example 1")
-    example1().runAsync
+    example1().runToFuture
     Thread.sleep(1000)
     println("Example 2")
-    example2().runAsync
+    example2().runToFuture
     Thread.sleep(1000)
   }
 

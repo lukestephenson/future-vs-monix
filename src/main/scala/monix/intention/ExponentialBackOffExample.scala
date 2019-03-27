@@ -25,7 +25,7 @@ object ExponentialBackOffExample {
 
     val taskWithRetryBackOff = runWithBackOff(task)
 
-    taskWithRetryBackOff.runAsync.onComplete { result =>
+    taskWithRetryBackOff.runToFuture.onComplete { result =>
       println(s"${Thread.currentThread().getName} - ${System.currentTimeMillis() - startTime}ms - Completed with $result")
     }
 
