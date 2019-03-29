@@ -15,7 +15,7 @@ object SeparateDefinitionFromExecution {
     }
 
 
-    task.delayExecution(2 seconds).runAsync(monix.execution.Scheduler.Implicits.global)
+    task.delayExecution(2 seconds).runToFuture(monix.execution.Scheduler.Implicits.global)
 
     println(s"hello ${Thread.currentThread().getName}")
 

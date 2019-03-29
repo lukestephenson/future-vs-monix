@@ -64,7 +64,7 @@ object TaskExamples {
         }
       }
 
-      task2.runAsync(scheduler)
+      task2.runToFuture(scheduler)
      }
   }
 }
